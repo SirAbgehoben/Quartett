@@ -21,8 +21,8 @@ public class cards {
     public static HashMap<String, Float> car14 = new HashMap<String, Float>();
     public static HashMap<String, Float> car15 = new HashMap<String, Float>();
     public static HashMap<String, Float> car16 = new HashMap<String, Float>();
-    public static HashMap<String, Float> car17 = new HashMap<String, Float>(); 
-    public static HashMap<String, Float> car18 = new HashMap<String, Float>(); 
+    public static HashMap<String, Float> car17 = new HashMap<String, Float>();
+    public static HashMap<String, Float> car18 = new HashMap<String, Float>();
 
     public cards() {
 
@@ -210,7 +210,7 @@ public class cards {
                     case 17:
                         Requested = "Hyundai i30 Kurth Edition";
                         break;
-                     case 18:
+                    case 18:
                         Requested = "Ford Focus Hofi Light Edition";
                         break;
                 }

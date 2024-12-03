@@ -22,33 +22,44 @@ public class SpringBoot {
     }
 
 
-    Boolean UserIdNumberSwitch = false;// Switch between user1 and user2 for unique userId
+    public String htmlbuilder(String userId) {
+        StringBuilder html = new StringBuilder();
 
+        if (GameOver) {
+            html.append("<html lang=\"en\">")
+                    .append("<head>")
+                    .append("<meta charset=\"UTF-8\">")
+                    .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
+                    .append("<title>Game Over</title>")
+                    .append("<style>")
+                    .append("body {")
+                    .append("  display: flex;")
+                    .append("  justify-content: center;")
+                    .append("  align-items: center;")
+                    .append("  min-height: 100vh;")
+                    .append("  margin: 0;")
+                    .append("  background-color: #eee;")
+                    .append("}")
+                    .append("#game-over {")
+                    .append("  background-color: green;")
+                    .append("  color: white;")
+                    .append("  padding: 20px 40px;")
+                    .append("  font-size: 3em;")
+                    .append("  border-radius: 10px;")
+                    .append("  text-align: center;")
+                    .append("}")
+                    .append("</style>")
+                    .append("</head>")
+                    .append("<body>")
+                    .append("<div id=\"game-over\">")
+                    .append("GameOver you placeholder!") // Or any dynamic content you want to add
+                    .append("</div>")
+                    .append("</body>")
+                    .append("</html>");
 
-    @GetMapping("/Quartett")
-    @ResponseBody
-    public String Quartett(HttpSession session) {
-        String userId = (String) session.getAttribute("userId");
-        // Check if userId is present in session or assign if new
-
-        if (userId == null) {
-            if (!UserIdNumberSwitch) {
-                userId = "user1";
-                UserIdNumberSwitch = true;
-                GameMain.GenerateCards("user1", "user2");
-                GameMain.GenerateCards();
-            } else {
-                userId = "user2";
-                UserIdNumberSwitch = false;
-            }
-            session.setAttribute("userId", userId);
+            return html.toString();
         }
 
-        //implement game end gui here
-
-
-        // Render HTML
-        StringBuilder html = new StringBuilder();
         html.append("<html>")
                 .append("<head>")
                 .append("<title>Car Comparison</title>")
@@ -208,7 +219,33 @@ public class SpringBoot {
                 .append("</body>")
                 .append("</html>");
 
+
         return html.toString();
+    }
+
+
+    Boolean UserIdNumberSwitch = false;// Switch between user1 and user2 for unique userId
+
+
+    @GetMapping("/Quartett")
+    @ResponseBody
+    public String Quartett(HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        // Check if userId is present in session or assign if new
+        if (userId == null) {
+            if (!UserIdNumberSwitch) {
+                userId = "user1";
+                UserIdNumberSwitch = true;
+                GameMain.GenerateCards("user1", "user2");
+                GameMain.GenerateCards();
+            } else {
+                userId = "user2";
+                UserIdNumberSwitch = false;
+            }
+            session.setAttribute("userId", userId);
+        }
+
+        return htmlbuilder(userId);
     }
 
 

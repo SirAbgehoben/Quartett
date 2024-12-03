@@ -25,7 +25,7 @@ public class GameMain {
 
     public static String AktiveUser = "user1";
     public static Boolean Ready = false;  // Set this to true or control it based on game logic
-
+    public static boolean GameOver = false;
 
     public static void SetOpponentCardInformation(String Action, String user) {
         switch (Action) {
@@ -173,7 +173,7 @@ public class GameMain {
 
         if (CardsUser1.equals(0) || CardsUser2.equals(0)) {
             System.out.println("GameOver");
-            //implement game over method
+            GameOver = true;
         }
     }
 

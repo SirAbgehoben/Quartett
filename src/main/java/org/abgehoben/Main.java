@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Main {
 
-
     public static void main(String[] args) {
 
         SpringApplication.run(SpringBoot.class, args);
+        cards cards = new cards(); //yes this is fucking mandatory why did i spend fucking hours on this single line bruh. o(≧口≦)o
     }
 
 
