@@ -52,8 +52,26 @@ public class SpringBoot {
                     .append("</head>")
                     .append("<body>")
                     .append("<div id=\"game-over\">")
-                    .append("GameOver you placeholder!") // Or any dynamic content you want to add
-                    .append("</div>")
+                    .append("Game Over");
+            if (userId.equals("user1")) {
+                if (CardsUser1.equals(0)) {
+                    html.append(" You Lost");
+                } else if (CardsUser1 > 0) {
+                    html.append(" You Won");
+                }
+
+            }
+            if (userId.equals("user2")) {
+                if (CardsUser2.equals(0)) {
+                    html.append(" You Lost");
+                } else if (CardsUser2 > 0) {
+                    html.append(" You Won");
+                }
+
+            }
+
+
+            html.append("</div>")
                     .append("</body>")
                     .append("</html>");
 
