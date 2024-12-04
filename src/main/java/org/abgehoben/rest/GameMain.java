@@ -12,7 +12,7 @@ public class GameMain {
     public static String PsUser1 = null;
     public static String ConsumptionUser1 = null;
 
-    public static Integer CardsUser1 = 18;
+    public static Integer CardsUser1 = 8;
 
     public static String CarImageUser2 = null;
     public static String CarNameUser2 = null;
@@ -21,7 +21,7 @@ public class GameMain {
     public static String PsUser2 = null;
     public static String ConsumptionUser2 = null;
 
-    public static Integer CardsUser2 = 18;
+    public static Integer CardsUser2 = 8;
 
     public static String AktiveUser = "user1";
     public static Boolean Ready = false;  // Set this to true or control it based on game logic
@@ -82,7 +82,7 @@ public class GameMain {
         }
 
 
-        ShowCards(); //Expecting 5 seconds of sleep
+        ReadyShowAndGenerate(); //Expecting 5 seconds of sleep
 
         switch (Action) {
             case "Quartett1":
@@ -178,7 +178,7 @@ public class GameMain {
     }
 
 
-    public static void ShowCards() throws InterruptedException {
+    public static void ReadyShowAndGenerate() throws InterruptedException {
         Ready = true;
         new Thread(() -> { //creating a new thread and waiting there to not block the main thread
             try {
@@ -202,5 +202,14 @@ public class GameMain {
         else {
             AktiveUser = "user1";
         }
+    }
+
+    public static void ResetQuartett(String UserId) {
+        AktiveUser = "user1";
+        CardsUser1 = 8;
+        CardsUser2 = 8;
+        GenerateCards("user1", "user2");
+        GenerateCards();
+        GameOver = false;
     }
 }

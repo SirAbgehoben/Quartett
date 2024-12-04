@@ -217,7 +217,7 @@ public class cards {
             } else {
                 // Build the field name dynamically, e.g., "car1", "car2", etc.
                 String fieldName = "car" + carNumber;
-
+                                                                                //transform to single hashmap
                 Field field = cards.class.getDeclaredField(fieldName);
 
                 HashMap<String, Float> car = (HashMap<String, Float>) field.get(cards.class);

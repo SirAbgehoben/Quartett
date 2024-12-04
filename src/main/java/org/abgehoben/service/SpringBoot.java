@@ -48,36 +48,40 @@ public class SpringBoot {
                     .append("  border-radius: 10px;")
                     .append("  text-align: center;")
                     .append("}")
+                    .append("#reset-button {")
+                    .append("  height: 30px;")
+                    .append("  width: 80px;")
+                    .append("  font-size: 1em;")
+                    .append("  margin-top: 20px;")
+                    .append("}")
                     .append("</style>")
                     .append("</head>")
                     .append("<body>")
                     .append("<div id=\"game-over\">")
                     .append("Game Over");
             if (userId.equals("user1")) {
-                if (CardsUser1.equals(0)) {
+                if (CardsUser1<CardsUser2) {
                     html.append(" You Lost");
-                } else if (CardsUser1 > 0) {
+                } else if (CardsUser1 > CardsUser2) {
                     html.append(" You Won");
                 }
-
             }
             if (userId.equals("user2")) {
-                if (CardsUser2.equals(0)) {
+                if (CardsUser2<CardsUser1) {
                     html.append(" You Lost");
-                } else if (CardsUser2 > 0) {
+                } else if (CardsUser2 > CardsUser1) {
                     html.append(" You Won");
                 }
-
             }
-
-
             html.append("</div>")
+                    .append("<br><br>")
+                    .append("<form action=\"/QuartettReset\" method=\"post\">")
+                    .append("<button id=\"reset-button\" type=\"submit\">Reset</button>")
+                    .append("</form>")
                     .append("</body>")
                     .append("</html>");
-
             return html.toString();
         }
-
         html.append("<html>")
                 .append("<head>")
                 .append("<title>Car Comparison</title>")
@@ -309,6 +313,15 @@ public class SpringBoot {
         GameMain.SetOpponentCardInformation("Quartett4", userId);
 
         System.out.println("Quartett4 triggered by user: " + userId);
+        return "redirect:/Quartett";
+    }
+
+    @PostMapping("/QuartettReset")
+    public String QuartettReset(HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        GameMain.ResetQuartett(userId);
+
+        System.out.println("resetted");
         return "redirect:/Quartett";
     }
 
