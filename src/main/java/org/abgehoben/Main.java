@@ -23,7 +23,22 @@ public class Main extends Thread{
     }
 
     public void run() { //default thread called by extends Thread
-        System.out.println("This code is running in a thread");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("\n" +
+                "\n" +
+                "  ██╗  ██╗     █████╗ ██████╗  ██████╗ ███████╗██╗  ██╗ ██████╗ ██████╗ ███████╗███╗   ██╗    ██╗  ██╗  \n" +
+                " ██╔╝ ██╔╝    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝██║  ██║██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ╚██╗ ╚██╗ \n" +
+                "██╔╝ ██╔╝     ███████║██████╔╝██║  ███╗█████╗  ███████║██║   ██║██████╔╝█████╗  ██╔██╗ ██║     ╚██╗ ╚██╗\n" +
+                "╚██╗ ╚██╗     ██╔══██║██╔══██╗██║   ██║██╔══╝  ██╔══██║██║   ██║██╔══██╗██╔══╝  ██║╚██╗██║     ██╔╝ ██╔╝\n" +
+                " ╚██╗ ╚██╗    ██║  ██║██████╔╝╚██████╔╝███████╗██║  ██║╚██████╔╝██████╔╝███████╗██║ ╚████║    ██╔╝ ██╔╝ \n" +
+                "  ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝    ╚═╝  ╚═╝  \n" +
+                "                                                                                                        \n" +
+                "\n");
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
@@ -74,7 +89,7 @@ public class Main extends Thread{
 
                         Field field = GameMain.class.getDeclaredField(varName);
                         field.setAccessible(true);
-                        field.set(null, varValue);
+                        field.set(null, varValue); //null == static
 
                     } catch (NoSuchFieldException | IllegalAccessException e) {
 
@@ -85,7 +100,5 @@ public class Main extends Thread{
                     break;
             }
         }
-
     }
-
 }
